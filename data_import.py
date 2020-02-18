@@ -1,10 +1,8 @@
 import numpy as np
 
-def importTraining():
-    return np.genfromtxt('./propublicaTrain.csv', delimiter=',', skip_header=1)
+def importData(trainName = 'propublicaTrain.csv', testName='propublicaTest.csv'):
+    dataTrain = np.genfromtxt(trainName, delimiter=',', skip_header=1, dtype='int64')
+    dataTest = np.genfromtxt(testName, delimiter=',', skip_header=1, dtype='int64')
 
-def importTesting():
-    return np.genfromtxt('./propublicaTest.csv', delimiter=',', skip_header=1)
-
-if __name__ == '__main__': # testing code
-    print(importTraining())
+    return (dataTrain[:,1:], dataTrain[:,0], dataTest[:,1:], dataTest[:,0])
+    #X_train, Y_train, X_test, Y_test
