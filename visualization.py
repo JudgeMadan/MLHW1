@@ -38,5 +38,6 @@ def knnVisualize(acc, width=0.2):
 
 
 if __name__ == '__main__':
-    data = importData()
-    knnVisualize(knnTest(data, 37, 2), width=0.42)
+    data = importData(returnType='split', removeRedundant=True, ignoreSensitive=True)
+    print(data[0][0,:])
+    knnVisualize(knnTest(data, 11, 2), width=0.42)
