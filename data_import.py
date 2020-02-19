@@ -22,8 +22,8 @@ def importData(trainName = 'propublicaTrain.csv', testName='propublicaTest.csv',
 
     if(returnType == 'split'): #@return X_train, Y_train, X_test, Y_test
         return (dataTrain[:,1:], dataTrain[:,0], dataTest[:,1:], dataTest[:,0])
-    elif(returnType == 'mle'): #@return train (rec_id == 0), train (rec_id==1), test
-        return (dataTrain[np.where(dataTrain[:,0] == 0),:], dataTrain[np.where(dataTrain[:,0] == 1),:], dataTest)
+    elif(returnType == 'mle'): #@return train (rec_id == 0), train (rec_id==1), X_test, Y_test
+        return (dataTrain[np.where(dataTrain[:,0] == 0),1:], dataTrain[np.where(dataTrain[:,0] == 1),1:], dataTest[:,1:], dataTest[:,0])
     else: #@return train, test
         return (dataTrain, dataTest)
 
