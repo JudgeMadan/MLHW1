@@ -11,10 +11,7 @@ def importData(trainName = 'propublicaTrain.csv', testName='propublicaTest.csv',
     if(ignoreSensitive):
         dataTrain = np.delete(dataTrain, 3, 1)
         dataTest = np.delete(dataTest, 3, 1)
-
-
-    # if(mle)
-
+        
     # if(normalize):
     #     maxbyCol = np.maximum(dataTrain.max(axis=0), dataTest.max(axis=0))
     #     dataTrain = dataTrain / maxbyCol
@@ -23,10 +20,12 @@ def importData(trainName = 'propublicaTrain.csv', testName='propublicaTest.csv',
     if(returnType == 'split'): #@return X_train, Y_train, X_test, Y_test
         return (dataTrain[:,1:], dataTrain[:,0], dataTest[:,1:], dataTest[:,0])
     elif(returnType == 'mle'): #@return train (rec_id == 0), train (rec_id==1), X_test, Y_test
-        return (dataTrain[np.where(dataTrain[:,0] == 0),1:], dataTrain[np.where(dataTrain[:,0] == 1),1:], dataTest[:,1:], dataTest[:,0])
+        x_0 = dataTrain[np.where(dataTrain[:,0] == 0),1:][0]
+        x_1 = dataTrain[np.where(dataTrain[:,0] == 1),1:][0]
+        return (x_0, x_1, dataTest[:,1:], dataTest[:,0])
     else: #@return train, test
         return (dataTrain, dataTest)
 
 
 if __name__ == '__main__':
-    print(importData(returnType='mle')[0])
+    print(importData(returnType='mle'))
