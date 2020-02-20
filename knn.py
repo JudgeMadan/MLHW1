@@ -36,5 +36,5 @@ def knn(X_train, Y_train, X_test, k, L): # Returns Y_pred
 
 if __name__ == '__main__':
     X_train, Y_train, X_test, Y_test = importData()
-    predictions = knn(X_train, Y_train, X_test, k=7, L='L1')
+    predictions = knn(X_train, Y_train, X_test, k=7, L='L2')
     print((predictions == Y_test).mean())

@@ -3,12 +3,13 @@ from data_import import importData
 
 def naive_bayes(x_train, y_train, x_test):
 
+    # print(x_train.shape, y_train.shape)
     unique, counts = np.unique(y_train, return_counts=True)
     d = dict(zip(unique, counts))
 
 
-    probability = counts/np.sum(counts)
-    num_classes = probability.shape[0]
+    class_priors = counts/np.sum(counts)
+    num_classes = class_priors.shape[0]
     num_features = x_train.shape[1]
 
 
@@ -31,7 +32,7 @@ def naive_bayes(x_train, y_train, x_test):
         for cl in range(num_classes):
             for ft in range(num_features):
                 prob[cl] = prob[cl] * classList[cl][ft].get(x[ft], 0)
-        prob = prob * probability # probability = class prior
+        prob = prob * class_priors # probability = class prior
         y_pred[i] = unique[np.argmax(prob)]
         i += 1
 
