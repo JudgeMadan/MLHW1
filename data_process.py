@@ -91,10 +91,10 @@ def importData(bagLimit=-1, loadVectors=True, loadBag=True, returnType='normal',
         hamFiles = getFileList("ham")
         spamFiles = getFileList("spam")
         allFiles = np.concatenate((hamFiles, spamFiles))
-        bag = build_bag(allFiles, load=loadBag, limit=baglimit)
+        bag = build_bag(allFiles, load=loadBag, limit=bagLimit)
 
-        hamVector = convertTextBag(hamFiles, bag, saveFile="ham" + str(baglimit))
-        spamVector = convertTextBag(spamFiles, bag, saveFile="spam" + str(baglimit))
+        hamVector = convertTextBag(hamFiles, bag, saveFile="ham" + str(bagLimit))
+        spamVector = convertTextBag(spamFiles, bag, saveFile="spam" + str(bagLimit))
 
     if(returnType == 'class'):
         return (hamVector, spamVector)
