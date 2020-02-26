@@ -7,7 +7,7 @@ def knn(X_train, Y_train, X_test, k, L): # Returns Y_pred
     n_train = X_train.shape[0]
     n_test = X_test.shape[0]
 
-    distances = np.zeros((n_test, n_train))
+    distances = np.empty((n_test, n_train))
 
     if(L=='L1'):
         for i in range(n_test):
@@ -35,6 +35,6 @@ def knn(X_train, Y_train, X_test, k, L): # Returns Y_pred
 
 
 if __name__ == '__main__':
-    X_train, Y_train, X_test, Y_test = importData()
+    X_train, Y_train, X_test, Y_test = importData(returnType='split')
     predictions = knn(X_train, Y_train, X_test, k=7, L='L2')
     print((predictions == Y_test).mean())

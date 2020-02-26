@@ -11,7 +11,7 @@ def importData(trainName = 'propublicaTrain.csv', testName='propublicaTest.csv',
     if(ignoreSensitive):
         dataTrain = np.delete(dataTrain, 3, 1)
         dataTest = np.delete(dataTest, 3, 1)
-        
+
     # if(normalize):
     #     maxbyCol = np.maximum(dataTrain.max(axis=0), dataTest.max(axis=0))
     #     dataTrain = dataTrain / maxbyCol

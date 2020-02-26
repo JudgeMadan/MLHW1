@@ -8,8 +8,10 @@ def mle(x_values0, x_values1):
     covariance_matrix1 = np.cov(x_values1, rowvar = False)
     mean0 = x_values0.mean(axis=0)
     mean1 = x_values1.mean(axis=0)
+    cp0 = x_values0.shape[0]/(x_values0.shape[0] + x_values1.shape[0])
+    cp1 = x_values1.shape[0]/(x_values0.shape[0] + x_values1.shape[0])
 
-    return (mean0, mean1, covariance_matrix0, covariance_matrix1)
+    return (mean0, mean1, covariance_matrix0, covariance_matrix1, cp0, cp1)
 
 def classifier(mean0, mean1, cov0, cov1, cp0, cp1, test):
     gaussian0 = multivariate_normal(mean0, cov0)
@@ -20,9 +22,7 @@ def classifier(mean0, mean1, cov0, cov1, cp0, cp1, test):
 
 if __name__ == '__main__':
     (x_values0, x_values1, x_test, y_test) = importData(returnType='mle', ignoreSensitive=False)
-    cp0 = x_values0.shape[0]/(x_values0.shape[0] + x_values1.shape[0])
-    cp1 = x_values1.shape[0]/(x_values0.shape[0] + x_values1.shape[0])
-    (mean0, mean1, covariance_matrix0, covariance_matrix1) = mle(x_values0, x_values1)
+    (mean0, mean1, covariance_matrix0, covariance_matrix1, cp0, cp1) = mle(x_values0, x_values1)
     y_pred = np.empty((x_test.shape[0]), dtype='int8')
     for i in range(x_test.shape[0]):
         y_pred[i] = classifier(mean0, mean1, covariance_matrix0, covariance_matrix1, cp0, cp1, x_test[i])
